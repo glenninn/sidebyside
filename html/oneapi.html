@@ -1,0 +1,80 @@
+<html>
+<head>
+  <title>POSTMAN wannabe</title>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+  
+<script type="text/javascript">
+
+function showStatus(code){
+var c;
+var cn = Number(code);
+
+  if(cn == 0) {
+     c = "#f9f9b3"; //yellow
+  } else if(cn == 200){
+     c = "#caf7d2";  // green
+  } else {
+     c = "#ea4f76"; // red
+  }
+  
+  $("#respbody").css("background-color",c);
+}
+
+
+function send(where){
+	showStatus(0);
+	$.post(where, 
+			{
+			   apiverb :$("#apiverb").val(),
+			   apihost :$("#apihost").val(),
+			   apipath :$("#apipath").val(),
+			   apibody :$("#apibody").val()
+			},	
+			(data,status,xhr)=>{
+			$("#status").text(xhr.status);
+			showStatus(xhr.status);
+			$("#respbody").text(JSON.stringify(data,null,2));
+			}
+	);
+}
+
+	
+</script>
+</head>
+<body>
+	<div>
+		<form name="apirequest" action="javascript:send('/apirequest')" method="POST">
+			<div>
+			API Host: &nbsp;
+			<select id="apiverb" name="apiverb">
+				<option>GET</option>
+				<option selected>POST</option>
+				<option>PUT</option>
+				<option>DELETE</option>
+			</select>
+			<input type="text" id="apihost" name="apihost" size="50" placeholder="URL to API to test"/>
+			</div>
+			<div>
+			API Path: &nbsp;
+			<input type="text" id="apipath" name="apipath" size="60" placeholder="URL to API to test"/>
+			<input type="submit" value="Send" />
+			</div>
+			<div>Body
+				<textarea id="apibody"  name="apibody" rows="8" cols="60">
+				</textarea>
+			</div>
+		</form>
+	</div>
+	<div>
+	    <div>
+		  Status: <b id="status" name="status"></b>
+		</div>
+		<div>
+		  Body:
+		  <textarea id="respbody" name="respbody" rows="15" 
+		    placeholder="API Response" cols = "60">
+		  </textarea>
+		</div>		  
+	</div>
+</body>
+</html>
