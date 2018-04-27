@@ -1,6 +1,6 @@
 
-# Side by Side - a Simple NodeNS App for API Comparisons
-aaaaaa
+# Side by Side - a Simple NodeJS App for API Comparisons
+
 Have you ever wanted to see the returns from calls to two API sites in a way that is easy to compare the return values?
 
 This is really helpful especially when testing API proxies.
@@ -27,7 +27,7 @@ To use side by side, you will need to have the Node JS environment including the
 
 At this point you should see the following screen:
 
-![side by side screenshot](images/session.png)
+![side by side screenshot](./images/session.png)
 
 ## Running and Comparing
 
