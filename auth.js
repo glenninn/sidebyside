@@ -37,7 +37,7 @@ var post = function(host,path,body){
 				if(res.statusCode===200){
 					resolve(JSON.parse(respBody));
 				} else {
-					reject(respBody);
+					reject( {statusCode: res.statusCode, body: respBody});
 				}
 			});
 		});
@@ -75,7 +75,7 @@ var get = function(host,path){
 				if(res.statusCode===200){
 					resolve(JSON.parse(respBody));
 				} else {
-					reject(respBody);
+					reject( {statusCode: res.statusCode, body: respBody});
 				}
 			});
 		});

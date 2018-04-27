@@ -35,7 +35,11 @@ function send(where){
 			showStatus(xhr.status);
 			$("#respbody").text(JSON.stringify(data,null,2));
 			}
-	);
+	).fail((xhr)=>{
+			$("#status").text(xhr.status);
+			showStatus(xhr.status);
+			$("#respbody").text(JSON.stringify(xhr.responseText));
+	});;
 }
 
 	

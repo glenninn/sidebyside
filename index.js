@@ -57,11 +57,11 @@ app.post("/apirequest", (req,res)=>{
 			console.log("GET: success: " + results);
 			res.status(200).json(results);	
 		},(errors)=>{
-			console.log("?? GET: error: " + errors);
+			console.log("?? GET: error: " + JSON.stringify(errors,null,2));
 			var em = {
 				statusmsg: "API Test target returned an error: "
 			};
-			res.status(500).json(em);
+			res.status(errors.statusCode).json(errors.body);
 		});
 	} else if(verb == "POST") {
 		p = auth.post(host,path,body);
@@ -69,11 +69,11 @@ app.post("/apirequest", (req,res)=>{
 			console.log("POST: success: " + results);
 			res.status(200).json(results);	
 		},(errors)=>{
-			console.log("?? POST: error: " + errors);
+			console.log("?? POST: error: " + JSON.stringify(errors,null,2));
 			var em = {
 				statusmsg: "API Test target returned an error: "
 			};
-			res.status(500).json(em);
+			res.status(errors.statusCode).json(errors.body);
 		});
 	} else {
 		res.type('text');
