@@ -81,8 +81,7 @@ app.post("/apirequest", (req,res)=>{
 	}	
 });
 
-var ourPort = 80;
-
+var ourPort = process.env.PORT || 80;
 app.listen(ourPort, ()=>{
 	console.log("API Test Comparison Server up, listening on port:  " + ourPort );
 });
