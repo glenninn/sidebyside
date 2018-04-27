@@ -4,9 +4,14 @@
   "description": "web site for showing side by side api calls",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+	"start" : "node index.js"
   },
-  "author": "",
+  "author": "Glenn Inn <glenninn@yahoo.com>",
+  "repository": {
+    "type": "git",
+	"url" : "https://github.com/glenninn/sidebyside.git"
+  },
   "license": "ISC",
   "dependencies": {
     "body-parser": "^1.18.2",
