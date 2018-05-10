@@ -34,7 +34,7 @@ var post = function(host,path,body){
 				respBody += chunk;
 			});
 			res.on('end',function(){
-				if(res.statusCode===200){
+				if( (res.statusCode==200) || (res.statusCode==201) ){
 					resolve(JSON.parse(respBody));
 				} else {
 					reject( {statusCode: res.statusCode, body: respBody});
@@ -72,7 +72,7 @@ var get = function(host,path){
 				respBody += chunk;
 			});
 			res.on('end',function(){
-				if(res.statusCode===200){
+				if( (res.statusCode==200) || (res.statusCode==201) ){
 					resolve(JSON.parse(respBody));
 				} else {
 					reject( {statusCode: res.statusCode, body: respBody});
