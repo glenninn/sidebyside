@@ -2,7 +2,20 @@
 <head>
   <title>POSTMAN wannabe</title>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+
   
+<style>
+#apiverb {
+   font-size: 18pt;
+}
+div {
+  margin-top: 5px;
+  margin-bottom: 2px;
+}
+body {
+background-color: #cae8f7;
+}
+</style>
 <script type="text/javascript">
 
 function showStatus(code){
@@ -50,30 +63,31 @@ function send(where){
 		<form name="apirequest" action="javascript:send('/apirequest')" method="POST">
 			<div>
 			API Host: &nbsp;
+			<input type="text" id="apihost" name="apihost" size="80" placeholder="URL to API host"/>
+			</div>
+			<div>
+			API Path: &nbsp;
 			<select id="apiverb" name="apiverb">
 				<option>GET</option>
 				<option selected>POST</option>
 				<option>PUT</option>
 				<option>DELETE</option>
 			</select>
-			<input type="text" id="apihost" name="apihost" size="50" placeholder="URL to API to test"/>
-			</div>
-			<div>
-			API Path: &nbsp;
-			<input type="text" id="apipath" name="apipath" size="60" placeholder="URL to API to test"/>
+			<input type="text" id="apipath" name="apipath" size="60" placeholder="API Endpoint URI..."/>
 			<input type="submit" value="Send" />
 			</div>
-			<div>Body
-<textarea id="apibody"  name="apibody" rows="8" cols="60"></textarea>
+			<div><span style="vertical-align:top">Body</span>
+<textarea id="apibody"  name="apibody" rows="8" cols="60" placeholder="Parameters for POST"></textarea>
 			</div>
 		</form>
 	</div>
+	<hr/>
 	<div>
 	    <div>
-		  Status: <b id="status" name="status"></b>
+		 <b id="status" name="status">Status:</b>
 		</div>
 		<div>
-		  Body:
+		 <span style="vertical-align:top">Body</span>
 <textarea id="respbody" name="respbody" rows="15" placeholder="API Response" cols = "60"></textarea>
 		</div>		  
 	</div>
