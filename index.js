@@ -75,6 +75,18 @@ app.post("/apirequest", (req,res)=>{
 			};
 			res.status(errors.statusCode).json(errors.body);
 		});
+	} else if(verb == "PUT") {
+		p = auth.put(host,path,body);
+		p.then( (results)=>{
+			console.log("PUT: success: " + results);
+			res.status(200).json(results);	
+		},(errors)=>{
+			console.log("?? PUT: error: " + JSON.stringify(errors,null,2));
+			var em = {
+				statusmsg: "API Test target returned an error: "
+			};
+			res.status(errors.statusCode).json(errors.body);
+		});
 	} else {
 		res.type('text');
 		res.status(405).send("API Test Application does not support: " + verb);

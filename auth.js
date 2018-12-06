@@ -9,8 +9,16 @@ var https = require("https");
 
 var authToken = "";
 
+var put  = function(host,path,body){
+	return putPost(host,path,body,"PUT");
+}
 
 var post = function(host,path,body){
+	return putPost(host,path,body,"POST");
+}
+
+
+var putPost = function(host,path,body,method){
 	var postPromise = new Promise(function(resolve,reject){
 		var postContent = JSON.stringify(body);
 		if( (authToken != "") ){
@@ -21,7 +29,7 @@ var post = function(host,path,body){
 			hostname : host,
 			port : 443,
 			path : path,
-			method: "POST",
+			method: method,
 			headers : {
 				'content-type' : 'application/json',
 				'content-length' : Buffer.byteLength(postContent)
@@ -34,7 +42,7 @@ var post = function(host,path,body){
 				respBody += chunk;
 			});
 			res.on('end',function(){
-				if( (res.statusCode==200) || (res.statusCode==201) ){
+				if( (res.statusCode==200) || (res.statusCode==201) || (res.statusCode==204) ){
 					resolve(JSON.parse(respBody));
 				} else {
 					reject( {statusCode: res.statusCode, body: respBody});
@@ -92,7 +100,7 @@ authorize = function(token){
 	authToken = token;
 }
 
-
+module.exports.put = put;
 module.exports.post = post;
 module.exports.get = get;
 module.exports.authorize = authorize;
