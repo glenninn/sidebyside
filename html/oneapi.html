@@ -52,8 +52,8 @@ function send(where){
 			showStatus(xhr.status);
 			var msg = JSON.stringify(data,null,2);
 			$("#respbody").text(msg);
-			console.log("# of lines: " + msg);
-			$("#lc").text(msg);
+			console.log("# of lines: " + lines(msg));
+			$("#lc").text(lines(msg));
 			}
 	).fail((xhr)=>{
 			$("#status").text(xhr.status);
