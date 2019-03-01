@@ -34,12 +34,16 @@ app.post("/apirequest", (req,res)=>{
 		path = "/" + path;
 		console.log("prepending '/' to path");
 	}
+	var prefix = "";
 	hostElem.forEach( (item,i)=> {
 		if( (i>0) && (item != "")) {
 			console.log("(" + i + "): Prepending: /" + item);
-			path = "/" + item + path;
+			prefix = prefix + "/" + item;
 		}
 	});
+	if(prefix !=""){
+		path = prefix + "/" + path;
+	}
 	
 	var verb  = req.body.apiverb;
 	console.log("\n\nAPIBODY: " + req.body.apibody);
