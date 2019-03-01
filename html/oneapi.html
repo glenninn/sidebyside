@@ -33,6 +33,10 @@ var cn = Number(code);
   $("#respbody").css("background-color",c);
 }
 
+function lines(str) {
+   var larray = this.split(/\r*\n/); 
+   return larray.length;
+}
 
 function send(where){
 	showStatus(0);
@@ -46,7 +50,10 @@ function send(where){
 			(data,status,xhr)=>{
 			$("#status").text(xhr.status);
 			showStatus(xhr.status);
-			$("#respbody").text(JSON.stringify(data,null,2));
+			var msg = JSON.stringify(data,null,2);
+			$("#respbody").text(msg);
+			console.log("# of lines: " + msg);
+			$("#lc").text(msg);
 			}
 	).fail((xhr)=>{
 			$("#status").text(xhr.status);
@@ -89,7 +96,10 @@ function send(where){
 		<div>
 		 <span style="vertical-align:top">Body</span>
 <textarea id="respbody" name="respbody" rows="15" placeholder="API Response" cols = "60"></textarea>
-		</div>		  
+		</div>
+		<div>		
+		  <span># of lines: <span id="lc"></span></span>
+		</div>
 	</div>
 </body>
 </html>
